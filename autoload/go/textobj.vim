@@ -148,7 +148,7 @@ function! go#textobj#Function(mode) abort
     " anonymous functions doesn't have associated doc. Also check if the user
     " want's to include doc comments for function declarations
     if has_key(info, 'doc') && go#config#TextobjIncludeFunctionDoc()
-      call cursor(info.doc.line, info.doc.col)
+      call cursor(info.doc.line-1, info.doc.col)
     elseif info['sig']['name'] == '' && go#config#TextobjIncludeVariable()
       " one liner anonymous functions
       if info.lbrace.line == info.rbrace.line
@@ -160,10 +160,10 @@ function! go#textobj#Function(mode) abort
         call cursor(info.func.line, info.rbrace.col)
       endif
     else
-      call cursor(info.func.line, info.func.col)
+      call cursor(info.func.line-1, info.func.col)
     endif
 
-    normal! v
+    normal! V
     call cursor(info.rbrace.line, info.rbrace.col)
     return
   endif

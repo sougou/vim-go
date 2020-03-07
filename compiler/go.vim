@@ -20,7 +20,7 @@ endif
 let s:save_cpo = &cpo
 set cpo-=C
 if filereadable("makefile") || filereadable("Makefile")
-  CompilerSet makeprg=make
+  CompilerSet makeprg=make\ build\ NOBANNER=1
 else
   CompilerSet makeprg=go\ build
 endif
@@ -31,7 +31,7 @@ endif
 " use a different output, for those we define them directly and modify the
 " errorformat ourselves. More information at:
 " http://vimdoc.sourceforge.net/htmldoc/quickfix.html#errorformat
-CompilerSet errorformat =%-G#\ %.%#                                 " Ignore lines beginning with '#' ('# command-line-arguments' line sometimes appears?)
+CompilerSet errorformat+=%-G#\ %.%#                                 " Ignore lines beginning with '#' ('# command-line-arguments' line sometimes appears?)
 CompilerSet errorformat+=%-G%.%#panic:\ %m                          " Ignore lines containing 'panic: message'
 CompilerSet errorformat+=%Ecan\'t\ load\ package:\ %m               " Start of multiline error string is 'can\'t load package'
 CompilerSet errorformat+=%A%\\%%(%[%^:]%\\+:\ %\\)%\\?%f:%l:%c:\ %m " Start of multiline unspecified string is 'filename:linenumber:columnnumber:'

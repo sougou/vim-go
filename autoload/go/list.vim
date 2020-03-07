@@ -29,9 +29,9 @@ function! go#list#Window(listtype, ...) abort
   endif
 
   if a:listtype == "locationlist"
-    exe 'lopen ' . height
+    exe 'botright lopen ' . height
   else
-    exe 'copen ' . height
+    exe 'botright copen ' . height
   endif
 endfunction
 
